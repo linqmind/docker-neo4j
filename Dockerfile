@@ -32,9 +32,11 @@ ENV DEBIAN_FRONTEND noninteractive
 # 注意这里要更改系统的时区设置，因为在 web 应用中经常会用到时区这个系统变量，默认的 ubuntu 会让你的应用程序发生不可思议的效果哦
 RUN echo "Asia/Chongqing" > /etc/timezone && \
         dpkg-reconfigure -f noninteractive tzdata
+WORKDIR /root
 
-RUN curl --fail --silent --show-error --location --remote-name ${NEO4J_URI} \
-    && echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
+ADD dist/neo4j-community-3.1.0-unix.tar.gz /root/neo4j-community-3.1.0-unix.tar.gz
+RUN \
+    echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
     && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
     && rm ${NEO4J_TARBALL}
