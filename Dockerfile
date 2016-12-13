@@ -36,8 +36,7 @@ WORKDIR /root
 
 ADD dist/neo4j-community-3.1.0-unix.tar.gz /root/neo4j-community-3.1.0-unix.tar.gz
 RUN \
-    echo "${NEO4J_SHA256}  ${NEO4J_TARBALL}" | sha256sum -csw - \
-    && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
+    tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
     && mv /var/lib/neo4j-* /var/lib/neo4j \
     && rm ${NEO4J_TARBALL}
 
