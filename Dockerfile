@@ -17,7 +17,7 @@ USER root
 # 安装必要软件
 RUN \
     apt-get update && \
-    apt-get install git curl  openssh-server onts-arphic-ukai supervisor -y && \
+    apt-get install git curl  openssh-server fonts-arphic-ukai supervisor -y && \
     sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 
 RUN \                                                                                                                                                                       
