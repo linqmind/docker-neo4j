@@ -34,11 +34,10 @@ RUN echo "Asia/Chongqing" > /etc/timezone && \
         dpkg-reconfigure -f noninteractive tzdata
 WORKDIR /root
 
-ADD dist/neo4j-community-3.1.0-unix.tar.gz /root/neo4j-community-3.1.0-unix.tar.gz
+ADD http://dist.neo4j.org/neo4j-community-3.1.0-unix.tar.gz /root/neo4j-community-3.1.0-unix.tar.gz
 RUN \
-    tar --extract --file ${NEO4J_TARBALL} --directory /var/lib \
-    && mv /var/lib/neo4j-* /var/lib/neo4j \
-    && rm ${NEO4J_TARBALL}
+    tar --extract --file /root/neo4j-community-3.1.0-unix.tar.gz --directory /var/lib \
+    && mv /var/lib/neo4j-* /var/lib/neo4j
 
 ADD adds/authorized_keys /authorized_keys
 
