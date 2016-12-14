@@ -48,13 +48,23 @@ RUN chmod u+x /config.sh
 
 RUN sh /config.sh && rm /config.sh
 
+
 ADD config/sshd.conf /etc/supervisor/conf.d/sshd.conf
 ADD config/neo4j.conf /etc/supervisor/conf.d/neo4j.conf
 
 ADD assets /assets
 RUN chmod u+x /assets/startup.sh
+RUN chmod u+x /assets/build_auth_string.sh
 
 WORKDIR /var/lib/neo4j
+
+# 更改配置文件  
+RUN \
+ sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties && \
+ sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \
+ echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties
+
+
 
 RUN mv data /data \
     && ln -s /data
