@@ -59,10 +59,10 @@ RUN chmod u+x /assets/build_auth_string.sh
 WORKDIR /var/lib/neo4j
 
 # 更改配置文件  
-RUN \
- sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties && \
- sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \
- echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties
+#RUN \
+# sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties && \
+# sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \
+# echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties
 
 
 
