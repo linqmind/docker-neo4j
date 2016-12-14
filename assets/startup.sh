@@ -12,7 +12,7 @@ if [ -n "$NEO4J_AUTH" ]; then
   else
       echo "will use custom credentials"
       mkdir -p $NEO4J_HOME/data/dbms
-      echo -n $NEO4J_AUTH | ./build_auth_string.sh > $NEO4J_HOME/data/dbms/auth
+      echo -n $NEO4J_AUTH | /assets/build_auth_string.sh > $NEO4J_HOME/data/dbms/auth
   fi
 fi
 
