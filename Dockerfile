@@ -59,17 +59,16 @@ RUN chmod u+x /assets/build_auth_string.sh
 WORKDIR /var/lib/neo4j
 
 # 更改配置文件  
-#RUN \
+RUN \
+    echo "dbms.connector.http.listen_address=:7474" >> /var/lib/neo4j/conf/neo4j-server.properties && \
+    echo "dbms.connectors.default_listen_address=0.0.0.0" >> /var/lib/neo4j/conf/neo4j-server.properties
 # sed -i "s|#node_auto_indexing|node_auto_indexing|g" /var/lib/neo4j/conf/neo4j.properties && \
 # sed -i "s|#node_keys_indexable|node_keys_indexable|g" /var/lib/neo4j/conf/neo4j.properties && \
 # echo "remote_shell_host=0.0.0.0" >> /var/lib/neo4j/conf/neo4j.properties
 
+VOLUME /var/lib/neo4j/data
 
-
-RUN mv data /data \
-    && ln -s /data
-
-VOLUME /data
+VOLUME /var/lib/neo4j/logs
 
 EXPOSE 7474 7473 7687 22
 
