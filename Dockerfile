@@ -35,6 +35,7 @@ RUN echo "Asia/Chongqing" > /etc/timezone && \
 WORKDIR /root
 
 ADD http://dist.neo4j.org/neo4j-community-3.1.0-unix.tar.gz /root/neo4j-community-3.1.0-unix.tar.gz
+
 RUN \
     tar --extract --file /root/neo4j-community-3.1.0-unix.tar.gz --directory /var/lib \
     && mv /var/lib/neo4j-* /var/lib/neo4j
