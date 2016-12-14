@@ -8,15 +8,13 @@ NEO4J_HOME=/var/lib/neo4j
 if [ -n "$NEO4J_AUTH" ]; then
   if [ "$NEO4J_AUTH" == "none" ]; then
       echo 'disabling authentication'
-      echo 'dbms.security.auth_enabled=false' >> $NEO4J_HOME/conf/neo4j-server.properties
+      sed -i "s|#dbms.security.auth_enabled|dbms.security.auth_enabled|g" /var/lib/neo4j/conf/neo4j.conf
   else
       echo "will use custom credentials"
       mkdir -p $NEO4J_HOME/data/dbms
       echo -n $NEO4J_AUTH | ./build_auth_string.sh > $NEO4J_HOME/data/dbms/auth
   fi
 fi
-
-sed -i "s|#org.neo4j.server.webserver.address=0.0.0.0|org.neo4j.server.webserver.address=$HOSTNAME|g" $NEO4J_HOME/conf/neo4j-server.properties
 
 # doing this conditionally in case there is already a limit higher than what
 # we're setting here. neo4j recommends at least 40000.
