@@ -61,7 +61,9 @@ WORKDIR /var/lib/neo4j
 # 更改配置文件  
 RUN \
     sed -i "s|#dbms.connector.http.listen_address|dbms.connector.http.listen_address|g" /var/lib/neo4j/conf/neo4j.conf && \
-    sed -i "s|#dbms.connectors.default_listen_address|dbms.connectors.default_listen_address|g" /var/lib/neo4j/conf/neo4j.conf
+    sed -i "s|#dbms.connectors.default_listen_address|dbms.connectors.default_listen_address|g" /var/lib/neo4j/conf/neo4j.conf && \
+    sed -i "s|#dbms.connector.bolt.tls_level=OPTIONAL|dbms.connector.bolt.tls_level=OPTIONAL|g" /var/lib/neo4j/conf/neo4j.conf && \
+    sed -i "s|#dbms.connector.bolt.listen_address=:7687|dbms.connector.bolt.listen_address=:7687|g" /var/lib/neo4j/conf/neo4j.conf
 
 VOLUME /var/lib/neo4j/data
 
