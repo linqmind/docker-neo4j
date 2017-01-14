@@ -17,9 +17,11 @@ docker run \
         registry.cn-hangzhou.aliyuncs.com/haibin/neo4j
 ```
 使用参数说明:  
+```
   - -- name 镜像名称  
   - -d 后端启动  
-  - e NEO4J_AUTH=<username>:<password>,username neo4j的登录的用户名，neo4j登录的密码。  
+  - -e NEO4J_AUTH=<username>:<password>,username neo4j的登录的用户名，neo4j登录的密码。  
   - -p 向外暴露的接口， -p <output_port>:<input_port> output_port 外部服务器的访问端口，input_port 内部服务器的访问端口。  
-  -v 映射逻辑卷。 -v <output_volumn>:<input_volumn> output_volumn 外部逻辑卷，input_volumn 内部逻辑卷。  
+  - -v 映射逻辑卷。 -v <output_volumn>:<input_volumn> output_volumn 外部逻辑卷，input_volumn 内部逻辑卷。  
   最后一行是需要启动镜像。  
+```
